@@ -31,7 +31,8 @@ jobs:
 
       - name: Install dependencies
         working-directory: apps/web
-        run: npm ci
+        # 锁文件里的下载地址是国内镜像，CI 上统一改回官方源，避免首次安装过慢
+        run: npm ci --replace-registry-host=always --no-audit --no-fund
 
       - name: Frontend tests
         working-directory: apps/web
