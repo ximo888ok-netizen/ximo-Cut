@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "**/*.md"
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - "**/*.md"
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install dependencies
+        working-directory: apps/web
+        run: npm ci
+
+      - name: Frontend tests
+        working-directory: apps/web
+        run: npm test
+
+      - name: Build desktop frontend
+        working-directory: apps/web
+        run: npm run build:desktop
+
+      - name: Setup Rust
+        uses: dtolnay/rust-toolchain@1.97.1
+
+      - name: Cache Rust
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: apps/web/src-tauri -> target
+
+      - name: Rust tests
+        working-directory: apps/web/src-tauri
+        run: cargo test --lib
