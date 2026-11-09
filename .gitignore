@@ -1,0 +1,20 @@
+node_modules/
+dist/
+dist-desktop/
+target/
+release/
+.env
+.env.*
+!.env.example
+docs/
+
+# moon runtime cache
+.moon/cache/
+
+# build caches
+.wrangler/
+.tanstack/
+*.tsbuildinfo
+
+# 本地 Whisper 模型权重（约 57MB，请自行放入 resources/asr）
+apps/web/src-tauri/resources/asr/*.bin

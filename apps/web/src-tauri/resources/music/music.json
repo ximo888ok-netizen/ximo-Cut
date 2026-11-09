@@ -1,0 +1,28 @@
+{
+  "tracks": [
+    {
+      "id": "builtin-morning",
+      "name": "晨光 · 轻快",
+      "bpm": 92,
+      "mood": "uplifting",
+      "duration": 62.61,
+      "file": "builtin-morning.m4a"
+    },
+    {
+      "id": "builtin-night",
+      "name": "城市夜行",
+      "bpm": 110,
+      "mood": "cool",
+      "duration": 52.36,
+      "file": "builtin-night.m4a"
+    },
+    {
+      "id": "builtin-daily",
+      "name": "轻快日常",
+      "bpm": 120,
+      "mood": "happy",
+      "duration": 48,
+      "file": "builtin-daily.m4a"
+    }
+  ]
+}

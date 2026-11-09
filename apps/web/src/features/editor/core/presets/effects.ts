@@ -1,0 +1,40 @@
+import type { LookPreset } from "./types";
+
+/**
+ * 28 个画面特效：全部映射到 FFmpeg 标准滤镜，预览用 CSS + 叠加层近似。
+ */
+export const EFFECT_PRESETS: LookPreset[] = [
+  { id: "fx-grain", label: "胶片颗粒", category: "质感", css: "contrast(1.04)", ffmpeg: "noise=alls=14:allf=t+u", overlay: "grain" },
+  { id: "fx-grain-soft", label: "细颗粒", category: "质感", css: "contrast(1.02)", ffmpeg: "noise=alls=7:allf=t+u", overlay: "grain" },
+  { id: "fx-grain-heavy", label: "粗颗粒", category: "质感", css: "contrast(1.08) saturate(0.96)", ffmpeg: "noise=alls=26:allf=t+u", overlay: "grain" },
+  { id: "fx-vignette", label: "暗角", category: "质感", css: "brightness(1.01)", ffmpeg: "vignette=PI/5", overlay: "vignette" },
+  { id: "fx-vignette-strong", label: "重暗角", category: "质感", css: "brightness(0.99)", ffmpeg: "vignette=PI/3.6", overlay: "vignette" },
+  { id: "fx-soft-focus", label: "柔焦", category: "柔化", css: "blur(1.6px) brightness(1.03)", ffmpeg: "gblur=sigma=5:steps=2" },
+  { id: "fx-blur", label: "重度模糊", category: "柔化", css: "blur(5px)", ffmpeg: "gblur=sigma=14:steps=2" },
+  { id: "fx-glow", label: "柔光", category: "柔化", css: "blur(2.4px) brightness(1.1) saturate(1.04)", ffmpeg: "gblur=sigma=10:steps=2,eq=brightness=0.08:saturation=1.04" },
+  { id: "fx-dream", label: "梦境", category: "柔化", css: "blur(1.2px) brightness(1.08) contrast(0.94) saturate(1.08)", ffmpeg: "gblur=sigma=3,eq=brightness=0.08:contrast=0.94:saturation=1.08" },
+  { id: "fx-sharpen", label: "锐化", category: "清晰", css: "contrast(1.1) saturate(1.04)", ffmpeg: "unsharp=5:5:1.2:5:5:0" },
+  { id: "fx-sharpen-strong", label: "强锐化", category: "清晰", css: "contrast(1.18) saturate(1.06)", ffmpeg: "unsharp=7:7:1.8:7:7:0" },
+  { id: "fx-mono", label: "黑白", category: "风格", css: "grayscale(1)", ffmpeg: "hue=s=0" },
+  { id: "fx-mono-hard", label: "硬黑白", category: "风格", css: "grayscale(1) contrast(1.4)", ffmpeg: "hue=s=0,eq=contrast=1.4" },
+  { id: "fx-invert", label: "反色", category: "风格", css: "invert(1)", ffmpeg: "negate" },
+  { id: "fx-edge", label: "边缘描线", category: "风格", css: "grayscale(0.7) contrast(1.6)", ffmpeg: "edgedetect=low=0.1:high=0.4" },
+  { id: "fx-pixel", label: "像素化", category: "风格", css: "contrast(1.18) saturate(1.1)", ffmpeg: "scale=iw/16:ih/16:flags=neighbor,scale=iw*16:ih*16:flags=neighbor" },
+  { id: "fx-pixel-soft", label: "轻度像素", category: "风格", css: "contrast(1.08)", ffmpeg: "scale=iw/6:ih/6:flags=neighbor,scale=iw*6:ih*6:flags=neighbor" },
+  { id: "fx-hflip", label: "水平镜像", category: "变形", css: "scaleX(-1)", ffmpeg: "hflip" },
+  { id: "fx-vflip", label: "垂直镜像", category: "变形", css: "scaleY(-1)", ffmpeg: "vflip" },
+  { id: "fx-glitch", label: "故障", category: "变形", css: "hue-rotate(90deg) saturate(1.5) contrast(1.1)", ffmpeg: "rgbashift=rh=8:bh=-8,eq=contrast=1.08:saturation=1.3", overlay: "scanline" },
+  { id: "fx-glitch-soft", label: "轻微故障", category: "变形", css: "hue-rotate(40deg) saturate(1.2)", ffmpeg: "rgbashift=rh=3:bh=-3", overlay: "scanline" },
+  { id: "fx-old-film", label: "老电影", category: "复古", css: "sepia(0.32) contrast(1.1) brightness(0.98)", ffmpeg: "curves=preset=vintage,noise=alls=9:allf=t,vignette=PI/4", overlay: "grain" },
+  { id: "fx-super8", label: "超 8", category: "复古", css: "sepia(0.44) contrast(1.14) saturate(1.08)", ffmpeg: "curves=preset=vintage,eq=contrast=1.12:saturation=1.04,noise=alls=12:allf=t", overlay: "grain" },
+  { id: "fx-scanline", label: "扫描线", category: "复古", css: "contrast(1.08) saturate(1.04)", ffmpeg: "noise=alls=6:allf=t,eq=contrast=1.06", overlay: "scanline" },
+  { id: "fx-neon", label: "霓虹", category: "光效", css: "saturate(1.36) contrast(1.08) hue-rotate(-10deg)", ffmpeg: "colorbalance=rs=0.1:bs=0.15:rm=0.05,eq=saturation=1.32:contrast=1.08" },
+  { id: "fx-warm-glow", label: "暖光晕", category: "光效", css: "sepia(0.16) brightness(1.06) saturate(1.12)", ffmpeg: "colorbalance=rm=0.1:bm=-0.05,eq=brightness=0.06:saturation=1.1" },
+  { id: "fx-cold-night", label: "冷夜", category: "光效", css: "hue-rotate(12deg) brightness(0.95) contrast(1.08)", ffmpeg: "colorbalance=bs=0.12:bm=-0.03,eq=brightness=-0.05:contrast=1.08" },
+  { id: "fx-slow-shutter", label: "慢快门", category: "动感", css: "blur(0.8px) contrast(1.04)", ffmpeg: "tmix=frames=3:weights=1" },
+  { id: "fx-echo", label: "重影", category: "动感", css: "contrast(1.06)", ffmpeg: "tmix=frames=5:weights=1" },
+  { id: "fx-faded", label: "褪色", category: "风格", css: "saturate(0.7) contrast(0.9) brightness(1.05)", ffmpeg: "eq=saturation=0.7:contrast=0.9:brightness=0.05" },
+  { id: "fx-red", label: "红色调", category: "风格", css: "sepia(0.4) saturate(1.4) contrast(1.04)", ffmpeg: "colorchannelmixer=rr=1.16:gg=0.92:bb=0.92,eq=saturation=1.2" },
+  { id: "fx-snow", label: "电视雪花", category: "质感", css: "contrast(1.12)", ffmpeg: "noise=alls=36:allf=t", overlay: "grain" },
+  { id: "fx-jitter", label: "抖动", category: "质感", css: "contrast(1.06)", ffmpeg: "noise=alls=20:allf=t+u", overlay: "grain" },
+];

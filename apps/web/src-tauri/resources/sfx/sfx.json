@@ -1,0 +1,46 @@
+{
+  "items": [
+    {
+      "id": "sfx-whoosh",
+      "name": "转场风声",
+      "category": "转场",
+      "duration": 0.7,
+      "file": "whoosh.wav"
+    },
+    {
+      "id": "sfx-riser",
+      "name": "情绪上升",
+      "category": "转场",
+      "duration": 1.6,
+      "file": "riser.wav"
+    },
+    {
+      "id": "sfx-impact",
+      "name": "重击",
+      "category": "强调",
+      "duration": 0.9,
+      "file": "impact.wav"
+    },
+    {
+      "id": "sfx-pop",
+      "name": "弹出",
+      "category": "点缀",
+      "duration": 0.2,
+      "file": "pop.wav"
+    },
+    {
+      "id": "sfx-click",
+      "name": "点击",
+      "category": "点缀",
+      "duration": 0.08,
+      "file": "click.wav"
+    },
+    {
+      "id": "sfx-sparkle",
+      "name": "闪光",
+      "category": "点缀",
+      "duration": 0.9,
+      "file": "sparkle.wav"
+    }
+  ]
+}
